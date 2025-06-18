@@ -42,6 +42,20 @@ namespace AfterImage
             this.enabled = false;
         }
 
+        public void StartVFX()
+        {
+            this.enabled = true;
+
+            OnVFXStarted?.Invoke();
+        }
+
+        public void StopVFX()
+        {
+            this.enabled = false;
+
+            OnVFXEnded?.Invoke();
+        }
+
         /// <summary>
         /// Draw all Clones
         /// </summary>
@@ -105,20 +119,6 @@ namespace AfterImage
             AfterImageClone clone = new AfterImageClone(cloneComponents);
             //Add clone to draw queue
             _spawnedClones.Enqueue(clone);
-        }
-
-        public void StartVFX()
-        {
-            this.enabled = true;
-
-            OnVFXStarted?.Invoke();
-        }
-
-        public void StopVFX()
-        {
-            this.enabled = false;
-
-            OnVFXEnded?.Invoke();
         }
 
         public bool IsEmitting => this.enabled;
